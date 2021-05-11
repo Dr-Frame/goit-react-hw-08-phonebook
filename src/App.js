@@ -6,9 +6,17 @@ import NavBar from './components/NavBar';
 
 import ContactsView from './view/ContactsView/ContactsView';
 import { Route, Switch } from 'react-router';
-import HomeView from './view/HomeView';
+import HomeView from './view/HomeView/HomeView';
+import RegistarionView from './view/RegistarationView/RegistationView';
+import LoginView from './view/LoginView/LoginView';
+import { connect } from 'react-redux';
+import authOperations from './redux/auth/auth-operations';
 
 class App extends Component {
+  componentDidMount() {
+    this.props.getCurrentUser();
+  }
+
   render() {
     return (
       <>
@@ -16,11 +24,16 @@ class App extends Component {
         <Switch>
           <Route exact path="/" component={HomeView} />
           <Route path="/contacts" component={ContactsView} />
-          <Route exact path="/registration" component={HomeView} />
-          <Route exact path="/login" component={HomeView} />
+          <Route exact path="/registration" component={RegistarionView} />
+          <Route exact path="/login" component={LoginView} />
         </Switch>
       </>
     );
   }
 }
-export default App;
+
+const mapDispatchToProps = {
+  getCurrentUser: authOperations.getCurrentUser,
+};
+
+export default connect(null, mapDispatchToProps)(App);

@@ -1,12 +1,20 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Navigation from '../Navigation';
 import AuthNav from '../AuthNav';
+import UserNav from '../UserNav';
+import { connect } from 'react-redux';
+import authSelectors from '../../redux/auth/auth-selectors';
 
-const NavBar = () => (
+const NavBar = ({ isAuthenticated }) => (
   <header>
     <Navigation />
-    <AuthNav />
+    {/* не забіть убрать ! */}
+    {!isAuthenticated ? <AuthNav /> : <UserNav />}
   </header>
 );
 
-export default NavBar;
+const mapStateToProps = state => ({
+  isAuthenticated: authSelectors.getIsAuthenticated(state),
+});
+
+export default connect(mapStateToProps)(NavBar);

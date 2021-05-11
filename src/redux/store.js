@@ -10,13 +10,9 @@ import {
   REGISTER,
   REHYDRATE,
 } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 import contactReducer from './contacts/contacts-reducer';
-
-/* const contactsPersistConfig = {
-  key: 'contactsDb',
-  storage,
-  blacklist: ['filter'],
-}; */
+import authReducer from './auth/auth-reducer';
 
 const middleware = [
   ...getDefaultMiddleware({
@@ -24,16 +20,44 @@ const middleware = [
       ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
     },
   }),
-  logger,
+  //logger,
 ];
+
+const authPersistConfig = {
+  key: 'auth',
+  storage,
+  whitelist: ['token'],
+};
 
 const store = configureStore({
   reducer: {
+    auth: persistReducer(authPersistConfig, authReducer),
     contact: contactReducer,
   },
   middleware,
   devTools: process.env.NODE_ENV === 'development',
 });
 
-/* const persistor = persistStore(store); */
-export default store;
+const persistor = persistStore(store);
+
+export default { persistor, store };
+
+/* const authPersistConfig = {
+  key: 'auth',
+  storage,
+  whitelist: ['token'],
+};
+
+const store = configureStore({
+  reducer: {
+    auth: persistReducer(authPersistConfig, authReducer),
+    contact: contactReducer,
+  },
+  middleware,
+  devTools: process.env.NODE_ENV === 'development',
+});
+
+const persistor = persistStore(store)
+
+const persistor = persistStore(store);
+export default {store, persistor}; */

@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 import actions from './contacts-actions';
 
-axios.defaults.baseURL = 'http://localhost:4040';
+/* axios.defaults.baseURL = 'http://localhost:4040'; */
 
 const addContact = (name, number) => dispatch => {
   const contact = {
@@ -44,12 +44,3 @@ const fetchContacts = () => async dispatch => {
 };
 
 export default { addContact, deleteContact, fetchContacts };
-
-/* const fetchContacts = () => dispatch => {
-  dispatch(actions.fetchContactsRequest());
-
-  axios
-    .get('/contacts')
-    .then(({ data }) => dispatch(actions.fetchContactsSuccess(data)))
-    .catch(error => dispatch(actions.fetchContactsError(error)));
-}; */
