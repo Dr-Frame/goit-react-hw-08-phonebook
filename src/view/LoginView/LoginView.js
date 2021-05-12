@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import './LoginView';
 import authOperations from '../../redux/auth/auth-operations';
 import authSelectors from '../../redux/auth/auth-selectors';
+import notifications from '../../components/Notification/Notification';
 
 const styles = {
   error: {
@@ -23,6 +24,13 @@ class LoginView extends Component {
     });
   };
 
+  /* showNotify = () => {
+    if (!this.props.onLoginSuccessNotifyShow) {
+      console.log('должна появится месидж');
+      notifications.loginSuccessNotify();
+    }
+  }; */
+
   handleSubmit = e => {
     e.preventDefault();
 
@@ -31,11 +39,15 @@ class LoginView extends Component {
       email: '',
       password: '',
     });
+
+    /* setTimeout(this.showNotify(this.props.onLoginSuccessNotifyShow), 1000); */
   };
 
   render() {
-    const { onErrorToShow } = this.props;
+    const { onErrorToShow, onLoginSuccessNotifyShow } = this.props;
     const { email, password } = this.state;
+
+    console.log(onLoginSuccessNotifyShow);
 
     return (
       <section>
@@ -64,7 +76,7 @@ class LoginView extends Component {
               onChange={this.handleInputChange}
             />
           </label>
-          <button type="submit">Login</button>
+          <button type="submit" /* onClick={this.showNotify} */>Login</button>
         </form>
       </section>
     );
@@ -73,6 +85,7 @@ class LoginView extends Component {
 
 const mapStateToProps = state => ({
   onErrorToShow: authSelectors.getIsErrorOccured(state),
+  onLoginSuccessNotifyShow: authSelectors.getIsLoginSuccess(state),
 });
 
 const mapDispatchToProps = {

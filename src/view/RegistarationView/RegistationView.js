@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import authOperations from '../../redux/auth/auth-operations';
+import authSelectors from '../../redux/auth/auth-selectors';
 
 import './RegistrationView.scss';
 
@@ -21,7 +22,7 @@ class RegistrationView extends Component {
   handleSubmit = e => {
     e.preventDefault();
     this.props.onRegister(this.state);
-    console.log(this.props.onRegister(this.state));
+
     this.setState({
       name: '',
       email: '',
@@ -30,6 +31,7 @@ class RegistrationView extends Component {
   };
 
   render() {
+    const { isErrorExist } = this.props;
     const { name, email, password } = this.state;
 
     return (
@@ -70,7 +72,7 @@ class RegistrationView extends Component {
               />
             </label>
             <br />
-            <button type="submit">send register form</button>
+            <button type="submit">Register account</button>
           </form>
         </div>
       </section>
@@ -78,8 +80,12 @@ class RegistrationView extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  isErrorExist: authSelectors.getApiError(state),
+});
+
 const mapDispatchToProps = {
   onRegister: authOperations.register,
 };
 
-export default connect(null, mapDispatchToProps)(RegistrationView);
+export default connect(mapStateToProps, mapDispatchToProps)(RegistrationView);

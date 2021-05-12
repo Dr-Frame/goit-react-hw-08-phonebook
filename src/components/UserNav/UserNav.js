@@ -31,7 +31,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  onLogout: authOperations.logOut(),
+  onLogout: authOperations.logOut,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserNav);
