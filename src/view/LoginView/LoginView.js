@@ -40,26 +40,33 @@ class LoginView extends Component {
           autoComplete="off"
           onSubmit={this.handleSubmit}
         >
-          <label className="login-form__label">
-            E-mail
+          <div className="login-form__wrapper">
+            <label className="login-form__label" for="email">
+              E-mail
+            </label>
             <input
+              id="email"
               className="login-form__input"
               type="text"
               name="email"
               value={email}
               onChange={this.handleInputChange}
             />
-          </label>
-          <label className="login-form__label">
-            Password
+          </div>
+
+          <div className="login-form__wrapper">
+            <label for="password " className="login-form__label">
+              Password
+            </label>
             <input
+              id="password"
               className="login-form__input"
               type="password"
               name="password"
               value={password}
               onChange={this.handleInputChange}
             />
-          </label>
+          </div>
 
           <button className="login-form__btn" type="submit">
             Login

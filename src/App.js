@@ -24,7 +24,7 @@ class App extends Component {
   render() {
     return (
       <>
-        <ReactNotification />
+        <ReactNotification isMobile="true" />
 
         <NavBar />
 
