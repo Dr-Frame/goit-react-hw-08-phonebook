@@ -16,6 +16,10 @@ const getCurrentUserRequest = createAction('auth/getCurrentUserRequest');
 const getCurrentUserSuccess = createAction('auth/getCurrentUserSuccess');
 const getCurrentUserError = createAction('auth/getCurrentUserError');
 
+const turnOffLogoutSuccessNotify = createAction(
+  'auth/turnOffLogoutSuccessNotify',
+);
+
 export default {
   registerRequest,
   registerSuccess,
@@ -29,4 +33,5 @@ export default {
   getCurrentUserRequest,
   getCurrentUserSuccess,
   getCurrentUserError,
+  turnOffLogoutSuccessNotify,
 };

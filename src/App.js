@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router';
 import { connect } from 'react-redux';
+import Container from './components/Container';
 import NavBar from './components/NavBar';
 import ContactsView from './view/ContactsView/ContactsView';
 import HomeView from './view/HomeView/HomeView';
@@ -11,6 +12,10 @@ import authOperations from './redux/auth/auth-operations';
 import PrivateRoute from './components/PrivateRoute';
 import PublicRoute from './components/PublicRoute';
 
+import ReactNotification from 'react-notifications-component';
+import 'react-notifications-component/dist/theme.css';
+import 'animate.css/animate.css';
+
 class App extends Component {
   componentDidMount() {
     this.props.getCurrentUser();
@@ -19,7 +24,10 @@ class App extends Component {
   render() {
     return (
       <>
+        <ReactNotification />
+
         <NavBar />
+
         <Switch>
           <Route exact path="/" component={HomeView} />
           <PrivateRoute

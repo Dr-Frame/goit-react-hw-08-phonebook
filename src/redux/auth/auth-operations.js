@@ -1,5 +1,6 @@
 import axios from 'axios';
 import authActions from './auth-actions';
+import notifications from '../../components/Notification/Notification';
 
 axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
 
@@ -28,8 +29,10 @@ const register = credentials => async dispatch => {
 
     token.set(response.data.token);
     dispatch(authActions.registerSuccess(response.data));
+    notifications.registerSuccessNotify();
   } catch (error) {
     dispatch(authActions.registerError(error.message));
+    notifications.registerErrorNotify();
   }
 };
 
@@ -49,8 +52,10 @@ const logIn = credentials => async dispatch => {
 
     token.set(response.data.token);
     dispatch(authActions.loginSuccess(response.data));
+    notifications.loginSuccessNotify();
   } catch (error) {
     dispatch(authActions.loginError(error.message));
+    notifications.loginErrorNotify();
   }
 };
 
@@ -69,6 +74,7 @@ const logOut = () => async dispatch => {
 
     token.unset();
     dispatch(authActions.logoutSuccess());
+    notifications.logoutSuccessNotify();
   } catch (error) {
     dispatch(authActions.logoutError(error.message));
   }
@@ -106,4 +112,14 @@ const getCurrentUser = () => async (dispatch, getState) => {
   }
 };
 
-export default { register, logOut, logIn, getCurrentUser };
+const turnOffLogoutSuccessNotify = () => dispatch => {
+  dispatch(authActions.turnOffLogoutSuccessNotify());
+};
+
+export default {
+  register,
+  logOut,
+  logIn,
+  getCurrentUser,
+  turnOffLogoutSuccessNotify,
+};

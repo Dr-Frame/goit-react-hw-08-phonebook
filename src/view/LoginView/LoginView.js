@@ -1,15 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import './LoginView';
+import './LoginView.scss';
 import authOperations from '../../redux/auth/auth-operations';
-import authSelectors from '../../redux/auth/auth-selectors';
-import notifications from '../../components/Notification/Notification';
-
-const styles = {
-  error: {
-    color: 'red',
-  },
-};
 
 class LoginView extends Component {
   state = {
@@ -24,13 +16,6 @@ class LoginView extends Component {
     });
   };
 
-  /* showNotify = () => {
-    if (!this.props.onLoginSuccessNotifyShow) {
-      console.log('должна появится месидж');
-      notifications.loginSuccessNotify();
-    }
-  }; */
-
   handleSubmit = e => {
     e.preventDefault();
 
@@ -39,57 +24,54 @@ class LoginView extends Component {
       email: '',
       password: '',
     });
-
-    /* setTimeout(this.showNotify(this.props.onLoginSuccessNotifyShow), 1000); */
   };
 
   render() {
-    const { onErrorToShow, onLoginSuccessNotifyShow } = this.props;
     const { email, password } = this.state;
 
-    console.log(onLoginSuccessNotifyShow);
-
     return (
-      <section>
-        <h1>Login form</h1>
-        {onErrorToShow && (
-          <p style={styles.error}>
-            User email or password is incorrect, please try again
-          </p>
-        )}
-        <form autoComplete="off" onSubmit={this.handleSubmit}>
-          <label>
+      <section className="login">
+        <p>frame2010@gmail.com</p>
+        <p>Frame123456</p>
+        <h1 className="login__title">Login form</h1>
+
+        <form
+          className="login-form"
+          autoComplete="off"
+          onSubmit={this.handleSubmit}
+        >
+          <label className="login-form__label">
             E-mail
             <input
+              className="login-form__input"
               type="text"
               name="email"
               value={email}
               onChange={this.handleInputChange}
             />
           </label>
-          <label>
+          <label className="login-form__label">
             Password
             <input
+              className="login-form__input"
               type="password"
               name="password"
               value={password}
               onChange={this.handleInputChange}
             />
           </label>
-          <button type="submit" /* onClick={this.showNotify} */>Login</button>
+
+          <button className="login-form__btn" type="submit">
+            Login
+          </button>
         </form>
       </section>
     );
   }
 }
 
-const mapStateToProps = state => ({
-  onErrorToShow: authSelectors.getIsErrorOccured(state),
-  onLoginSuccessNotifyShow: authSelectors.getIsLoginSuccess(state),
-});
-
 const mapDispatchToProps = {
   onLogin: authOperations.logIn,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginView);
+export default connect(null, mapDispatchToProps)(LoginView);
