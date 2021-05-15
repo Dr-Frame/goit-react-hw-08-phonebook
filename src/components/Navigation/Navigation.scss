@@ -1,0 +1,60 @@
+@import '../../styles/base.scss';
+
+header {
+  background-color: $secondary-color;
+  box-shadow: 0px -5px 10px -5px white inset;
+}
+.container {
+  width: 320px;
+  padding: 10px;
+}
+.header-nav {
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-nav__wrapper {
+  display: flex;
+}
+
+.header-nav__item {
+  display: block;
+  margin-right: 10px;
+  position: relative;
+  text-transform: uppercase;
+  color: white;
+  font-size: 14px;
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  &::after {
+    content: '';
+    top: 20px;
+    height: 5px;
+    left: 0;
+    position: absolute;
+    background: white;
+    width: 0;
+    transition: $transition;
+  }
+
+  &:hover::after {
+    width: 100%;
+  }
+}
+
+.header-nav__item--active {
+  &::after {
+    content: '';
+
+    height: 5px;
+    left: 0;
+    position: absolute;
+    background: white;
+    width: 100%;
+  }
+}

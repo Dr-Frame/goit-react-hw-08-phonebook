@@ -4,17 +4,17 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import authSelectors from '../../redux/auth/auth-selectors';
 import authOperations from '../../redux/auth/auth-operations';
+import { FaUserSecret } from 'react-icons/fa';
 
-const UserNav = ({ email, onLogout }) => {
+const UserNav = ({ name, onLogout }) => {
   return (
-    <div>
-      <img
-        src="https://banner2.cleanpng.com/20180920/efk/kisspng-user-logo-information-service-design-5ba34f88a0c3a6.5907352915374293846585.jpg"
-        width="30"
-        alt="user-logo"
-      ></img>
-      <p>{email}</p>
-      <button type="button" onClick={onLogout}>
+    <div className="UserNav__wrapper">
+      <div className="UserNav__user-data-wrapper">
+        <p className="UserNav__user-mail">Hi, {name}</p>
+        <FaUserSecret className="UserNav__logo" />
+      </div>
+
+      <button type="button" onClick={onLogout} className="UserNav__btn">
         Logout
       </button>
     </div>
@@ -22,12 +22,12 @@ const UserNav = ({ email, onLogout }) => {
 };
 
 UserNav.propTypes = {
-  email: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
   onLogout: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
-  email: authSelectors.getUserMail(state),
+  name: authSelectors.getUserName(state),
 });
 
 const mapDispatchToProps = {

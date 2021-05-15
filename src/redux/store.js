@@ -13,6 +13,7 @@ import {
 import storage from 'redux-persist/lib/storage';
 import contactReducer from './contacts/contacts-reducer';
 import authReducer from './auth/auth-reducer';
+import sidebarReducer from './sidebar/sidebar-reducer';
 
 const middleware = [
   ...getDefaultMiddleware({
@@ -33,6 +34,7 @@ const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
     contact: contactReducer,
+    sidebar: sidebarReducer,
   },
   middleware,
   devTools: process.env.NODE_ENV === 'development',

@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/integration/react';
-
+import 'modern-normalize/modern-normalize.css';
 import App from './App';
 import store from './redux/store';
-import './index.scss';
+import './styles/base.scss';
 
 ReactDOM.render(
   <React.StrictMode>

@@ -1,0 +1,40 @@
+@import './variables';
+@import './colors';
+
+%button {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 25px;
+
+  border: none;
+  border-radius: 5px;
+  width: 150px;
+  height: 40px;
+
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+
+  background-color: $secondary-color;
+  color: $secondary-text-color;
+
+  cursor: pointer;
+  transition: $transition;
+
+  &:hover,
+  :active {
+    text-shadow: 0px 0px 10px $text-shadow-color;
+    transform: scale(1.1);
+  }
+}
+
+%menu-hamburger {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 16px;
+}

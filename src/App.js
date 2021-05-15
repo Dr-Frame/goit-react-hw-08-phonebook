@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router';
 import { connect } from 'react-redux';
-import Container from './components/Container';
-import NavBar from './components/NavBar';
+import Navigation from './components/Navigation';
 import ContactsView from './view/ContactsView/ContactsView';
 import HomeView from './view/HomeView/HomeView';
 import RegistarionView from './view/RegistarationView/RegistationView';
@@ -26,7 +25,7 @@ class App extends Component {
       <>
         <ReactNotification isMobile="true" />
 
-        <NavBar />
+        <Navigation />
 
         <Switch>
           <Route exact path="/" component={HomeView} />
