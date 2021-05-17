@@ -4,14 +4,14 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import authSelectors from '../../redux/auth/auth-selectors';
 import authOperations from '../../redux/auth/auth-operations';
-import { FaUserSecret } from 'react-icons/fa';
+import { FaUserCircle } from 'react-icons/fa';
 
 const UserNav = ({ name, onLogout }) => {
   return (
     <div className="UserNav__wrapper">
       <div className="UserNav__user-data-wrapper">
-        <p className="UserNav__user-mail">Hi, {name}</p>
-        <FaUserSecret className="UserNav__logo" />
+        <p className="UserNav__user-name">Hi, {name}</p>
+        <FaUserCircle className="UserNav__logo" />
       </div>
 
       <button type="button" onClick={onLogout} className="UserNav__btn">

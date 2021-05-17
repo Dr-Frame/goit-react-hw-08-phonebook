@@ -6,6 +6,7 @@ import ContactsView from './view/ContactsView/ContactsView';
 import HomeView from './view/HomeView/HomeView';
 import RegistarionView from './view/RegistarationView/RegistationView';
 import LoginView from './view/LoginView/LoginView';
+import Footer from './components/Footer';
 
 import authOperations from './redux/auth/auth-operations';
 import PrivateRoute from './components/PrivateRoute';
@@ -38,15 +39,16 @@ class App extends Component {
             restricted
             path="/registration"
             component={RegistarionView}
-            redirectTo="/"
+            redirectTo="/contacts"
           />
           <PublicRoute
             path="/login"
             restricted
             component={LoginView}
-            redirectTo="/"
+            redirectTo="/contacts"
           />
         </Switch>
+        <Footer />
       </>
     );
   }

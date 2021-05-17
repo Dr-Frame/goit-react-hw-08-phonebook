@@ -6,6 +6,7 @@ import UserNav from '../UserNav';
 
 import './Navigation.scss';
 import authSelectors from '../../redux/auth/auth-selectors';
+import { MdLocalLibrary } from 'react-icons/md';
 
 const Navigation = ({ isAuthenticated }) => {
   return (
@@ -13,6 +14,9 @@ const Navigation = ({ isAuthenticated }) => {
       <div className="container">
         <nav className="header-nav">
           <div className="header-nav__wrapper">
+            <NavLink className="header-nav__logo" exact to="/">
+              <MdLocalLibrary className="header-nav__logo-icon" />
+            </NavLink>
             <NavLink
               className="header-nav__item"
               activeClassName="header-nav__item--active"

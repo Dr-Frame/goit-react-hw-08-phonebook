@@ -2,17 +2,28 @@
 
 header {
   background-color: $secondary-color;
+
   box-shadow: 0px -5px 10px -5px white inset;
 }
 .container {
-  width: 320px;
+  @include for-size(mobile); /* width: 320px; */
   padding: 10px;
 }
 .header-nav {
-  min-height: 60px;
+  height: 60px;
+  margin-left: 30px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+.header-nav__logo {
+  position: absolute;
+  left: 10px;
+}
+
+.header-nav__logo-icon {
+  font-size: 24px;
+  color: $secondary-text-color;
 }
 
 .header-nav__wrapper {
@@ -32,14 +43,7 @@ header {
   }
 
   &::after {
-    content: '';
-    top: 20px;
-    height: 5px;
-    left: 0;
-    position: absolute;
-    background: white;
-    width: 0;
-    transition: $transition;
+    @extend %nav-link-underscore-hover;
   }
 
   &:hover::after {
@@ -49,12 +53,6 @@ header {
 
 .header-nav__item--active {
   &::after {
-    content: '';
-
-    height: 5px;
-    left: 0;
-    position: absolute;
-    background: white;
-    width: 100%;
+    @extend %nav-link-underscore-active;
   }
 }

@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import authOperations from '../../redux/auth/auth-operations';
 import authSelectors from '../../redux/auth/auth-selectors';
+import { FiMail } from 'react-icons/fi';
+import { IoMdKey } from 'react-icons/io';
+import { FaUserEdit } from 'react-icons/fa';
 
 import './RegistrationView.scss';
 
@@ -35,46 +38,59 @@ class RegistrationView extends Component {
     const { name, email, password } = this.state;
 
     return (
-      <section>
-        <div>
-          <h1>Registration form</h1>
-          <form onSubmit={this.handleSubmit} autoComplete="off">
-            <label>
-              Name
-              <br />
+      <section className="register">
+        <h1 className="register__title">Registration form</h1>
+        <form
+          className="register-form"
+          onSubmit={this.handleSubmit}
+          autoComplete="off"
+        >
+          <div className="register-form__block-wrapper">
+            <label className="register-form__label">Name</label>
+            <div className="register-form__input-wrapper">
               <input
+                className="register-form__input"
                 type="text"
                 name="name"
                 value={name}
                 onChange={this.handleInputChange}
               />
-            </label>
-            <br />
-            <label>
-              E-mail
-              <br />
+              <FaUserEdit className="register-form__input-icon" />
+            </div>
+          </div>
+
+          <div className="register-form__block-wrapper">
+            <label className="register-form__label">E-mail </label>
+            <div className="register-form__input-wrapper">
               <input
+                className="register-form__input"
                 type="text"
                 name="email"
                 value={email}
                 onChange={this.handleInputChange}
               />
-            </label>
-            <br />
-            <label>
-              Password
-              <br />
+              <FiMail className="register-form__input-icon" />
+            </div>
+          </div>
+
+          <div className="register-form__block-wrapper">
+            <label className="register-form__label">Password </label>
+            <div className="register-form__input-wrapper">
               <input
+                className="register-form__input"
                 type="password"
                 name="password"
                 value={password}
                 onChange={this.handleInputChange}
               />
-            </label>
-            <br />
-            <button type="submit">Register account</button>
-          </form>
-        </div>
+              <IoMdKey className="register-form__input-icon" />
+            </div>
+          </div>
+
+          <button className="register-form__btn" type="submit">
+            Register account
+          </button>
+        </form>
       </section>
     );
   }

@@ -1,32 +1,23 @@
 @import '../../styles/base.scss';
 
-.login {
-  padding: 10px;
-}
-
-.login__title {
-  @extend %form-title;
-}
-
-.login-form {
+.Phonebook__form {
   @extend %form-box;
 }
-
-.login-form__wrapper {
+.Phonebook-form__block-wrapper {
   display: flex;
   flex-direction: column;
   margin-bottom: 15px;
 }
 
-.login-form__label {
+.Phonebook__label {
   @extend %input-label;
 }
 
-.login-form__input-wrapper {
+.Phonebook-form__input-wrapper {
   position: relative;
 }
 
-.login-form__input {
+.Phonebook__input {
   @extend %input-form;
 
   &:focus {
@@ -34,14 +25,19 @@
   }
 }
 
-.login-form__input-icon {
+.Phonebook-form__input-icon {
   @extend %input-icon;
 
-  .login-form__input-wrapper:focus-within & {
+  .Phonebook-form__input-wrapper:focus-within & {
     @extend %input-icon-focus;
   }
 }
 
-.login-form__btn {
+.Phonebook-form__btn {
   @extend %button;
+}
+
+.Phonebook__btn {
+  @extend %button;
+  margin-bottom: 10px;
 }

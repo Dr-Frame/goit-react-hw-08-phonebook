@@ -3,6 +3,9 @@ import { v4 as uuidv4 } from 'uuid';
 import { connect } from 'react-redux';
 import contactOperations from '../../redux/contacts/contacts-operations';
 import contactsSelectors from '../../redux/contacts/contacts-selectors';
+import './Phonebook.scss';
+import { FaUserEdit } from 'react-icons/fa';
+import { BiPhoneCall } from 'react-icons/bi';
 // uuidv4(); // ⇨ '9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d'
 
 class Phonebook extends Component {
@@ -50,11 +53,14 @@ class Phonebook extends Component {
     const phoneInputId = uuidv4();
 
     return (
-      <div>
-        <form onSubmit={this.contactAdd}>
-          <label htmlFor={nameInputId}>
+      <form onSubmit={this.contactAdd} className="Phonebook__form">
+        <div className="Phonebook-form__block-wrapper">
+          <label htmlFor={nameInputId} className="Phonebook__label">
             Name
+          </label>
+          <div className="Phonebook-form__input-wrapper">
             <input
+              className="Phonebook__input"
               type="text"
               name="name"
               pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -64,11 +70,17 @@ class Phonebook extends Component {
               value={this.state.name}
               id={nameInputId}
             />
-          </label>
+            <FaUserEdit className="Phonebook-form__input-icon" />
+          </div>
+        </div>
 
-          <label htmlFor="phoneInputId">
-            number
+        <div className="Phonebook-form__block-wrapper">
+          <label htmlFor="phoneInputId" className="Phonebook__label">
+            Number
+          </label>
+          <div className="Phonebook-form__input-wrapper">
             <input
+              className="Phonebook__input"
               type="tel"
               name="number"
               pattern="(\+?( |-|\.)?\d{1,2}( |-|\.)?)?(\(?\d{3}\)?|\d{3})( |-|\.)?(\d{3}( |-|\.)?\d{4})"
@@ -78,10 +90,14 @@ class Phonebook extends Component {
               value={this.state.number}
               id={phoneInputId}
             />
-          </label>
-          <button type="submit">Add contact</button>
-        </form>
-      </div>
+            <BiPhoneCall className="Phonebook-form__input-icon" />
+          </div>
+        </div>
+
+        <button className="Phonebook__btn" type="submit">
+          Add contact
+        </button>
+      </form>
     );
   }
 }
